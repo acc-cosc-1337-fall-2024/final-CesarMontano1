@@ -3,6 +3,7 @@
 #include <iostream>
 #include "die.h"
 #include "roll.h"
+#include "shooter.h"
 
 TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
@@ -25,6 +26,19 @@ TEST_CASE("Rolling two dice returns values between 2 and 12", "[Roll]") {
     for (int i = 0; i < 10; ++i) {
         roll.roll_dice();
         int result = roll.roll_value();
+        REQUIRE(result >= 2);
+        REQUIRE(result <= 12);
+    }
+}
+
+TEST_CASE("Shooter returns a Roll with values between 2 and 12", "[Shooter]") {
+    die die1, die2;
+    shooter shooter;
+
+    for (int i = 0; i < 10; ++i) {
+        roll* newroll = shooter.throw_dice(die1, die2);
+        REQUIRE(newroll != nullptr); // Check that the returned Roll object is not null
+        int result = newroll->roll_value();
         REQUIRE(result >= 2);
         REQUIRE(result <= 12);
     }
