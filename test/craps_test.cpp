@@ -4,6 +4,8 @@
 #include "die.h"
 #include "roll.h"
 #include "shooter.h"
+#include "come_out_phase.h" 
+#include "point_phase.h"
 
 TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
@@ -41,5 +43,6 @@ TEST_CASE("Shooter returns a Roll with values between 2 and 12", "[Shooter]") {
         int result = newroll->roll_value();
         REQUIRE(result >= 2);
         REQUIRE(result <= 12);
+        delete newroll;
     }
 }
